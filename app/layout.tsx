@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const openSans = Open_Sans({ 
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-open-sans",
+});
 
 export const metadata: Metadata = {
-  title: "Neeko Tamashiro - Coming Soon",
-  description: "New website coming soon",
+  title: "Neeko Tamashiro - Japanese Tattoo Artist",
+  description: "Japanese tattoo artist based in Japan. Traditional irezumi and Japanese tattooing by Neeko Tamashiro.",
 };
 
 export default function RootLayout({
@@ -16,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="dark">
-      <body className={inter.className}>{children}</body>
+      <body className={openSans.className}>{children}</body>
     </html>
   );
 }
