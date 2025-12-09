@@ -183,21 +183,40 @@ export default function Home() {
         </h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
-          {[1, 2, 3].map((num) => (
-            <div key={num} className="space-y-3 sm:space-y-4">
+          {[
+            {
+              id: 1,
+              name: "Han'nya Brigade Book",
+              editorial: "The Golden Flash Collection",
+              year: "2016"
+            },
+            {
+              id: 2,
+              name: "Eleven Fourteen Volume III: Japanese Edition",
+              editorial: "Scorpion Front Publishing",
+              year: "2025"
+            },
+            {
+              id: 3,
+              name: "Japanese Tattoo Atlas",
+              editorial: "Hoaki Books",
+              year: "2025"
+            }
+          ].map((book) => (
+            <div key={book.id} className="space-y-3 sm:space-y-4">
               <div className="relative w-full aspect-square bg-gray-800 rounded-[25px] overflow-hidden">
                 <Image
-                  src={`/img/book-${num}.jpg`}
-                  alt={`Book ${num}`}
+                  src={`/img/book-${book.id}.jpg`}
+                  alt={book.name}
                   fill
                   className="object-cover"
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                 />
               </div>
               <div className="space-y-1 text-sm sm:text-base text-center leading-[1.8] text-white">
-                <p className="mb-0 font-normal">BOOK NAME</p>
-                <p className="mb-0 font-normal">Editorial Name</p>
-                <p className="font-normal">Year of Publication</p>
+                <p className="mb-0 font-normal">{book.name}</p>
+                <p className="mb-0 font-normal">{book.editorial}</p>
+                <p className="font-normal">{book.year}</p>
               </div>
             </div>
           ))}
@@ -318,7 +337,7 @@ export default function Home() {
         </div>
         
         <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl">
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold uppercase mb-8 sm:mb-10 md:mb-12 leading-relaxed text-white">
+          <p className="text-lg sm:text-xl md:text-2xl font-normal uppercase mb-6 sm:mb-8 md:mb-12 text-white tracking-[8px] sm:tracking-[10px] md:tracking-[12px]">
             EXPLORE EXCLUSIVE PRODUCTS AND MERCH HERE
           </p>
           <a

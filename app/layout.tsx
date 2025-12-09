@@ -11,6 +11,11 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
   title: "Neeko Tamashiro - Japanese Tattoo Artist",
   description: "Japanese tattoo artist based in Japan. Traditional irezumi and Japanese tattooing by Neeko Tamashiro.",
+  icons: {
+    icon: "/img/logo-icon.png",
+    shortcut: "/img/logo-icon.png",
+    apple: "/img/logo-icon.png",
+  },
 };
 
 export default function RootLayout({
