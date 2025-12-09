@@ -2,15 +2,41 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const heroSectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroSectionRef.current) {
+        const heroSectionHeight = heroSectionRef.current.offsetHeight;
+        const scrollPosition = window.scrollY;
+        
+        if (scrollPosition > heroSectionHeight) {
+          setIsScrolled(true);
+        } else {
+          setIsScrolled(false);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    // Verificar posición inicial
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <main className="bg-black text-white">
       {/* Nav Bar */}
-      <nav className="fixed top-4 sm:top-[38px] left-0 right-0 z-50 bg-transparent">
+      <nav className={`fixed ${isScrolled ? 'top-0' : 'top-4 sm:top-[38px]'} left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-black/80 py-4 sm:py-5' : 'bg-transparent'}`}>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
           <div className="relative flex items-center justify-between">
             {/* Logo izquierdo - Neeko Tamashiro */}
@@ -51,9 +77,6 @@ export default function Home() {
               <Link href="#art-work" className="hover:text-white/80 transition-colors">
                 Art Work
               </Link>
-              <Link href="#contact" className="hover:text-white/80 transition-colors">
-                Contact
-              </Link>
             </div>
           </div>
           
@@ -74,20 +97,13 @@ export default function Home() {
               >
                 Art Work
               </Link>
-              <Link 
-                href="#contact" 
-                className="text-base font-normal text-white hover:text-white/80 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contact
-              </Link>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Banner */}
-      <section className="relative w-full h-screen min-h-[600px] sm:min-h-[700px] md:min-h-[800px] lg:min-h-[1012px] flex items-center justify-center pt-20 sm:pt-24">
+      <section ref={heroSectionRef} className="relative w-full h-screen min-h-[600px] sm:min-h-[700px] md:min-h-[800px] lg:min-h-[1012px] flex items-center justify-center pt-20 sm:pt-24">
         <div className="absolute inset-0 z-0">
           {/* Imagen de fondo con opacidad y posicionamiento específico */}
           <div className="absolute inset-0 opacity-[0.35] overflow-hidden pointer-events-none">
@@ -269,7 +285,7 @@ export default function Home() {
               <p>Today, we continue working and perfecting the design of our Kabuto machines.</p>
             </div>
             <a
-              href="https://instagram.com/kabuto"
+              href="https://www.instagram.com/kabuto_tm/"
               target="_blank"
               rel="noopener noreferrer"
               className="block md:inline-block mx-auto md:mx-0 px-6 sm:px-8 py-2 bg-[#d9d9d9] text-black uppercase font-bold text-sm sm:text-base hover:bg-gray-400 transition-colors rounded-[186px] text-center"
@@ -310,7 +326,7 @@ export default function Home() {
               <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
             </div>
             <a
-              href="https://instagram.com/kamisama"
+              href="https://www.instagram.com/holakamisama/"
               target="_blank"
               rel="noopener noreferrer"
               className="block md:inline-block mx-auto md:mx-0 px-6 sm:px-8 py-2 bg-[#d9d9d9] text-black uppercase font-bold text-sm sm:text-base hover:bg-gray-400 transition-colors rounded-[186px] text-center"
@@ -340,7 +356,7 @@ export default function Home() {
             EXPLORE EXCLUSIVE PRODUCTS AND MERCH HERE
           </p>
           <a
-            href="https://kamisama.shop"
+            href="https://www.holakamisama.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-6 sm:px-8 py-2 bg-[#d9d9d9] text-black uppercase font-bold text-sm sm:text-base hover:bg-gray-400 transition-colors rounded-[186px]"
@@ -350,25 +366,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-12 sm:py-16 md:py-24 text-center">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase mb-6 sm:mb-8">
-          Contact
-        </h2>
-        <p className="text-sm sm:text-base text-white/80 mb-4 sm:mb-6">
-          For inquiries and bookings, please reach out through:
-        </p>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6">
-          <a
-            href="https://instagram.com/neekotamashiro"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm sm:text-base text-white/90 hover:text-white transition-colors"
-          >
-            Instagram: @neekotamashiro
-          </a>
-        </div>
-      </section>
     </main>
   );
 }
