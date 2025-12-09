@@ -54,3 +54,5 @@ Coloca las siguientes imágenes en esta carpeta (`/public/img/`) con los nombres
 - Los formatos soportados son: JPG, PNG, WebP
 - Asegúrate de que las imágenes tengan buena calidad y resolución adecuada
 
+
+

@@ -146,21 +146,12 @@ export default function Home() {
             </h2>
             <div className="text-sm sm:text-base leading-[1.8] text-white font-normal mx-auto md:mx-0 max-w-full md:max-w-[515px]">
               <p className="mb-0">
-                My name is Nicolás Tamashiro, a.k.a. Neeko. I was born in Buenos Aires, Argentina.
-                <br aria-hidden="true" />I am a Japanese descendant from Higashi-son, Okinawa, and Tosa, Kōchi-ken.
-              </p>
-              <p>
-                Started tattooing in 2006.
-                <br aria-hidden="true" />
-                In 2009, I began working at "Tattoomanía", one of the first tattoo studios in Buenos Aires, where I started studying Japanese tattooing and Ukiyo-e.
-                <br aria-hidden="true" />
-                After working in several studios, I opened my own shop, "Ichō Bunshin", in 2018.
-                <br aria-hidden="true" />I am currently living in Japan.
+                My name is Nicolás Tamashiro, a.k.a. Neeko. Born in Buenos Aires, Argentina, I am a Japanese descendant from Higashi-son (Okinawa) and Tosa (Kōchi-ken). I started tattooing in 2006 and, in 2009, joined "Tattoomanía," one of the first tattoo studios in Buenos Aires, where I began studying Japanese tattooing and Ukiyo-e. After working in several studios, I opened my own shop, "Ichō Bunshin," in 2018. I am currently living in Japan.
               </p>
             </div>
           </div>
           
-          <div className="relative rounded-[25px] overflow-hidden mx-auto md:mx-0 w-full max-w-[406px] aspect-[406/475]">
+          <div className="relative rounded-[25px] overflow-hidden mx-auto w-full max-w-[406px] aspect-[406/475]">
             <div className="absolute inset-0 overflow-hidden rounded-[25px] pointer-events-none">
               <div 
                 className="relative"
