@@ -239,9 +239,8 @@ export default function Home() {
         
         <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl">
           <div className="text-lg sm:text-xl md:text-2xl font-bold uppercase leading-[1.8] mb-8 sm:mb-10 md:mb-12 text-white tracking-[4px] sm:tracking-[5px] md:tracking-[6px]">
-            <p className="mb-0">"I BELIEVE IN THE POWER OF</p>
-            <p className="mb-0">PAPER AND INK AS A FORM</p>
-            <p>OF LEARNING"</p>
+            <p className="mb-0">I FIND AND FEEL FREEDOM</p>
+            <p>IN PAPER AND PENCIL</p>
           </div>
           <Link
             href="#art-work"
