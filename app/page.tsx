@@ -71,7 +71,7 @@ export default function Home() {
             
             {/* Navegación derecha - Desktop */}
             <div className="hidden md:flex items-center gap-8 lg:gap-12 text-base font-normal text-white">
-              <Link href="#tattoo-gallery" className="hover:text-white/80 transition-colors">
+              <Link href="/tattoo-gallery" className="hover:text-white/80 transition-colors">
                 Tattoo Galery
               </Link>
               <Link href="#art-work" className="hover:text-white/80 transition-colors">
@@ -84,7 +84,7 @@ export default function Home() {
           <div className={`md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-sm transition-all duration-300 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'} mt-4`}>
             <div className="flex flex-col gap-4 px-4 py-6">
               <Link 
-                href="#tattoo-gallery" 
+                href="/tattoo-gallery" 
                 className="text-base font-normal text-white hover:text-white/80 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -145,7 +145,7 @@ export default function Home() {
             Neeko Tamashiro
           </h1>
           <Link
-            href="#tattoo-gallery"
+            href="/tattoo-gallery"
             className="inline-block px-6 sm:px-8 py-2 bg-[#d9d9d9] text-black uppercase font-bold text-sm sm:text-base hover:bg-gray-400 transition-colors rounded-[186px]"
           >
             View Tattoo Gallery
