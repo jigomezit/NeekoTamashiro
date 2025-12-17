@@ -3,11 +3,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const heroSectionRef = useRef<HTMLElement>(null);
+  const biographyRef = useRef(null);
+  const bookFeaturesRef = useRef(null);
+  const artWorkRef = useRef(null);
+  const otherProjectsRef = useRef(null);
+  const merchRef = useRef(null);
+
+  const biographyInView = useInView(biographyRef, { once: true, margin: "-100px" });
+  const bookFeaturesInView = useInView(bookFeaturesRef, { once: true, margin: "-100px" });
+  const artWorkInView = useInView(artWorkRef, { once: true, margin: "-100px" });
+  const otherProjectsInView = useInView(otherProjectsRef, { once: true, margin: "-100px" });
+  const merchInView = useInView(merchRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -138,25 +150,46 @@ export default function Home() {
         </div>
         
         <div className="relative z-10 text-center px-4 sm:px-6">
-          <p className="text-lg sm:text-xl md:text-2xl font-bold uppercase mb-3 sm:mb-4 text-white tracking-[8px] sm:tracking-[10px] md:tracking-[12px]">
-            JAPANESE TATTOO BY
-          </p>
-          <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-normal uppercase mb-6 sm:mb-8 md:mb-12 text-white tracking-[6px] sm:tracking-[8px] md:tracking-[9.6px]">
-            Neeko Tamashiro
-          </h1>
-          <Link
-            href="/tattoo-gallery"
-            className="inline-block px-6 sm:px-8 py-2 bg-[#d9d9d9] text-black uppercase font-bold text-sm sm:text-base hover:bg-gray-400 transition-colors rounded-[186px]"
+          <motion.p 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lg sm:text-xl md:text-2xl font-bold uppercase mb-3 sm:mb-4 text-white tracking-[8px] sm:tracking-[10px] md:tracking-[12px]"
           >
-            View Tattoo Gallery
-          </Link>
+            JAPANESE TATTOO BY
+          </motion.p>
+          <motion.h1 
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-normal uppercase mb-6 sm:mb-8 md:mb-12 text-white tracking-[6px] sm:tracking-[8px] md:tracking-[9.6px]"
+          >
+            Neeko Tamashiro
+          </motion.h1>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <Link
+              href="/tattoo-gallery"
+              className="inline-block px-6 sm:px-8 py-2 bg-[#d9d9d9] text-black uppercase font-bold text-sm sm:text-base hover:bg-gray-400 transition-colors rounded-[186px]"
+            >
+              View Tattoo Gallery
+            </Link>
+          </motion.div>
         </div>
       </section>
 
       {/* Biography Section */}
-      <section id="biography" className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-12 sm:py-16 md:py-24">
+      <section ref={biographyRef} id="biography" className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-12 sm:py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-start w-full">
-          <div className="text-center md:text-left flex flex-col justify-center min-h-[300px] sm:min-h-[400px] md:min-h-[475px]">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={biographyInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center md:text-left flex flex-col justify-center min-h-[300px] sm:min-h-[400px] md:min-h-[475px]"
+          >
             <h2 className="text-xl sm:text-2xl font-bold uppercase mb-8 sm:mb-10 md:mb-[50px] text-white tracking-[8px] sm:tracking-[10px] md:tracking-[12px] leading-normal">
               BIOGRAPHY
             </h2>
@@ -165,9 +198,14 @@ export default function Home() {
                 My name is Nicolás Tamashiro, a.k.a. Neeko. Born in Buenos Aires, Argentina, I am a Japanese descendant from Higashi-son (Okinawa) and Tosa (Kōchi-ken). I started tattooing in 2006 and, in 2009, joined "Tattoomanía," one of the first tattoo studios in Buenos Aires, where I began studying Japanese tattooing and Ukiyo-e. After working in several studios, I opened my own shop, "Ichō Bunshin," in 2018. I am currently living in Japan.
               </p>
             </div>
-          </div>
+          </motion.div>
           
-          <div className="relative rounded-[25px] overflow-hidden mx-auto w-full max-w-[406px] aspect-[406/475]">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            animate={biographyInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="relative rounded-[25px] overflow-hidden mx-auto w-full max-w-[406px] aspect-[406/475]"
+          >
             <div className="absolute inset-0 overflow-hidden rounded-[25px] pointer-events-none">
               <div 
                 className="relative"
@@ -188,15 +226,20 @@ export default function Home() {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Book Features Section */}
-      <section id="book-features" className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-12 sm:py-16 md:py-24">
-        <h2 className="text-xl sm:text-2xl font-bold uppercase text-center mb-8 sm:mb-12 md:mb-16 text-white tracking-[8px] sm:tracking-[10px] md:tracking-[12px]">
+      <section ref={bookFeaturesRef} id="book-features" className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-12 sm:py-16 md:py-24">
+        <motion.h2 
+          initial={{ opacity: 0, y: -30 }}
+          animate={bookFeaturesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-xl sm:text-2xl font-bold uppercase text-center mb-8 sm:mb-12 md:mb-16 text-white tracking-[8px] sm:tracking-[10px] md:tracking-[12px]"
+        >
           Book Features
-        </h2>
+        </motion.h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
           {[
@@ -218,8 +261,14 @@ export default function Home() {
               editorial: "Hoaki Books",
               year: "2025"
             }
-          ].map((book) => (
-            <div key={book.id} className="space-y-3 sm:space-y-4">
+          ].map((book, index) => (
+            <motion.div 
+              key={book.id} 
+              initial={{ opacity: 0, y: 50 }}
+              animate={bookFeaturesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+              transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
+              className="space-y-3 sm:space-y-4"
+            >
               <div className="relative w-full aspect-square bg-gray-800 rounded-[25px] overflow-hidden">
                 <Image
                   src={`/img/book-${book.id}.jpg`}
@@ -234,13 +283,13 @@ export default function Home() {
                 <p className="mb-0 font-normal">{book.editorial}</p>
                 <p className="font-normal">{book.year}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* Art Work Section */}
-      <section id="art-work" className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[960px] flex items-center justify-center py-12 sm:py-16 md:py-20 lg:py-24">
+      <section ref={artWorkRef} id="art-work" className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[960px] flex items-center justify-center py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 opacity-30">
             <Image
@@ -253,29 +302,55 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl">
-          <div className="text-lg sm:text-xl md:text-2xl font-bold uppercase leading-[1.8] mb-8 sm:mb-10 md:mb-12 text-white tracking-[4px] sm:tracking-[5px] md:tracking-[6px]">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={artWorkInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="relative z-10 text-center px-4 sm:px-6 max-w-4xl"
+        >
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={artWorkInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-lg sm:text-xl md:text-2xl font-bold uppercase leading-[1.8] mb-8 sm:mb-10 md:mb-12 text-white tracking-[4px] sm:tracking-[5px] md:tracking-[6px]"
+          >
             <p className="mb-0">I FIND AND FEEL FREEDOM</p>
             <p>IN PAPER AND PENCIL</p>
-          </div>
-          <Link
-            href="#art-work"
-            className="inline-block px-6 sm:px-8 py-2 bg-[#d9d9d9] text-black uppercase font-bold text-sm sm:text-base hover:bg-gray-400 transition-colors rounded-[186px]"
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={artWorkInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            View Art Work Gallery
-          </Link>
-        </div>
+            <Link
+              href="#art-work"
+              className="inline-block px-6 sm:px-8 py-2 bg-[#d9d9d9] text-black uppercase font-bold text-sm sm:text-base hover:bg-gray-400 transition-colors rounded-[186px]"
+            >
+              View Art Work Gallery
+            </Link>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Other Projects Section */}
-      <section id="other-projects" className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-12 sm:py-16 md:py-24">
-        <h2 className="text-xl sm:text-2xl font-bold uppercase text-center mb-12 sm:mb-16 md:mb-20 text-white tracking-[8px] sm:tracking-[10px] md:tracking-[12px]">
+      <section ref={otherProjectsRef} id="other-projects" className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-12 sm:py-16 md:py-24">
+        <motion.h2 
+          initial={{ opacity: 0, y: -30 }}
+          animate={otherProjectsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-xl sm:text-2xl font-bold uppercase text-center mb-12 sm:mb-16 md:mb-20 text-white tracking-[8px] sm:tracking-[10px] md:tracking-[12px]"
+        >
           OTHER PROJECTS
-        </h2>
+        </motion.h2>
         
         {/* Kabuto Rotary Machines */}
         <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center mb-16 sm:mb-20 md:mb-24 lg:mb-32">
-          <div className="space-y-4 sm:space-y-6">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={otherProjectsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="space-y-4 sm:space-y-6"
+          >
             <div className="text-xl sm:text-2xl font-bold uppercase text-white tracking-[8px] sm:tracking-[10px] md:tracking-[12px] text-center md:text-left">
               <p className="mb-0">KABUTO</p>
               <p>Rotary Machines</p>
@@ -292,9 +367,14 @@ export default function Home() {
             >
               Kabuto Instagram
             </a>
-          </div>
+          </motion.div>
           
-          <div className="relative w-full aspect-[406/422] rounded-[25px] overflow-hidden bg-gray-800">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            animate={otherProjectsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="relative w-full aspect-[406/422] rounded-[25px] overflow-hidden bg-gray-800"
+          >
             <Image
               src="/img/kabuto-project.jpg"
               alt="Kabuto Rotary Machines"
@@ -302,12 +382,17 @@ export default function Home() {
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-          </div>
+          </motion.div>
         </div>
 
         {/* Kamisama */}
         <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
-          <div className="relative w-full aspect-[406/422] order-2 md:order-1 rounded-[25px] overflow-hidden bg-gray-800">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={otherProjectsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            className="relative w-full aspect-[406/422] order-2 md:order-1 rounded-[25px] overflow-hidden bg-gray-800"
+          >
             <Image
               src="/img/kamisama-project.jpg"
               alt="Kamisama"
@@ -315,9 +400,14 @@ export default function Home() {
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-          </div>
+          </motion.div>
           
-          <div className="space-y-4 sm:space-y-6 order-1 md:order-2">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            animate={otherProjectsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+            className="space-y-4 sm:space-y-6 order-1 md:order-2"
+          >
             <h3 className="text-xl sm:text-2xl font-bold uppercase text-white tracking-[8px] sm:tracking-[10px] md:tracking-[12px] text-center md:text-left">
               KAMISAMA
             </h3>
@@ -333,12 +423,12 @@ export default function Home() {
             >
               Kamisama Instagram
             </a>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Merch Section */}
-      <section id="merch" className="relative w-full min-h-[400px] sm:min-h-[500px] md:min-h-[550px] lg:min-h-[710px] flex items-center justify-center py-12 sm:py-16 md:py-20 lg:py-24">
+      <section ref={merchRef} id="merch" className="relative w-full min-h-[400px] sm:min-h-[500px] md:min-h-[550px] lg:min-h-[710px] flex items-center justify-center py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 opacity-30">
             <Image
@@ -351,19 +441,35 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl">
-          <p className="text-lg sm:text-xl md:text-2xl font-normal uppercase mb-6 sm:mb-8 md:mb-12 text-white tracking-[8px] sm:tracking-[10px] md:tracking-[12px]">
-            EXPLORE EXCLUSIVE PRODUCTS AND MERCH HERE
-          </p>
-          <a
-            href="https://www.holakamisama.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-6 sm:px-8 py-2 bg-[#d9d9d9] text-black uppercase font-bold text-sm sm:text-base hover:bg-gray-400 transition-colors rounded-[186px]"
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={merchInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="relative z-10 text-center px-4 sm:px-6 max-w-4xl"
+        >
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={merchInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-lg sm:text-xl md:text-2xl font-normal uppercase mb-6 sm:mb-8 md:mb-12 text-white tracking-[8px] sm:tracking-[10px] md:tracking-[12px]"
           >
-            KAMISAMA SHOP
-          </a>
-        </div>
+            EXPLORE EXCLUSIVE PRODUCTS AND MERCH HERE
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={merchInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          >
+            <a
+              href="https://www.holakamisama.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 sm:px-8 py-2 bg-[#d9d9d9] text-black uppercase font-bold text-sm sm:text-base hover:bg-gray-400 transition-colors rounded-[186px]"
+            >
+              KAMISAMA SHOP
+            </a>
+          </motion.div>
+        </motion.div>
       </section>
 
     </main>
