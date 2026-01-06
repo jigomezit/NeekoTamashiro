@@ -253,7 +253,7 @@ export default function Home() {
               id: 2,
               name: "Eleven Fourteen Volume III: Japanese Edition",
               editorial: "Scorpion Front Publishing",
-              year: "2025"
+              year: "2019"
             },
             {
               id: 3,
